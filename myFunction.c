@@ -13,10 +13,10 @@ char *getInputFromUser()
         *(str+index) = ch;
         size++;
         index++;
-        str = (char *)realloc(str, size* sizeof(char));
+        str = (char *)realloc(str, size * sizeof(char));
     }
     *(str+index) = '\0';
-    return NULL;
+    return str;
 }
 void blue(){
 
@@ -25,10 +25,6 @@ void blue(){
 void reset(){
 
      printf("\033[0m");
-}
-char **splitArgument(char *str)
-{
-    return NULL;
 }
 
 void getLocation()

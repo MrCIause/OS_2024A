@@ -5,6 +5,30 @@ int main()
 {
     welcome();
     getLocation();
+    while(1)
+    {
+        getLocation();
+        char *input = getInputFromUser();
+        puts(input);
+        // cp\0<file>\0<file>\0  - we put a \0 to create an ending index.
+        // [cp, <file>, <file>] - we place the strings into an array.
+        // [input, input+3, input+10] - input will read cp untill \0, input+3 will read <file> till \0.
+
+        char** arg = splitArgument(input);
+        int i = 0;
+        while(*(arg+i)!=NULL)
+        {
+            puts(*(arg+i)); // can do arg[i];
+            i++;
+        }
+
+
+        if(strcmp(input,"exit")==0)
+        {
+            puts("LogOut");
+            break;
+        }
+    }
     
     return 0;
 }
