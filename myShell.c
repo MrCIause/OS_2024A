@@ -4,20 +4,44 @@
 int main()
 {
     welcome();
-    getLocation();
     while(1)
     {
+        getPcUsername();
+        printf(":~");
         getLocation();
         char *input = getInputFromUser();
         if(strcmp(input,"exit")==0 || strncmp(input, "exit ", 5)==0)
             logout(input);
-        char **arg = splitArgument(input);
+        char **arguments = splitArgument(input);
+        // input = echo\0<string>\0<string>...
+        // [echo,<string>,<string>,NULL]
+
         // cp\0<file>\0<file>\0  - we put a \0 to create an ending index.
         // [cp, <file>, <file>] - we place the strings into an array.
         // [input, input+3, input+10] - input will read cp untill \0, input+3 will read <file> till \0.
+        if(strcmp(arguments[0], "echo")==0)
+            echo(arguments);
 
-            free(arg);
-            free(input);
+
+        char *functions[] = {"echo","exit"}; // checks if input to cmd even exists in existing commands, if it doesnt it return a retry message with invalid arguments.
+        while(*(functions))
+        {
+            if(*functions==NULL)
+                break;
+
+            if(strcmp(arguments[0], *functions)!=0)
+            {
+                puts("Unknown command, please retry.");
+                break;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        free(arguments);
+        free(input);
     }
     
     return 0;
