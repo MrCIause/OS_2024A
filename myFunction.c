@@ -42,3 +42,10 @@ void getLocation()
         reset();
     }
 }
+
+void logout(char *input)
+{
+    free(input); // gets input frees it.
+    puts("log out"); // prints log out.
+    exit(EXIT_SUCCESS); // EXIT_SUCCESS = 0, exit without interruptions.
+}
